@@ -32,7 +32,7 @@ Allow users to “pin” articles of interest above their search results
 
 ### Feedback
 
-- I'm passionate about user's getting visual feedback so this is why I included my usual snack bar
+- I'm passionate about users getting visual feedback so this is why I included my usual snack bar
 - The snack bar is used in this project to let users know their pins and unpins have been registered.
 - I also use it to alert users when they've lost connection to the internet + when they regain internet access
 
@@ -40,7 +40,7 @@ Allow users to “pin” articles of interest above their search results
 
 ### Tailwind
 
-- First and foremost I went with tailwind for the ease of use. Creating reusable components with tailwind just feels easier and simpler than vanilla css. I also love how one has the ability to set up theming + override defaults.
+- First and foremost, I went with tailwind for the ease of use. Creating reusable components with tailwind just feels easier and simpler than vanilla css. I also love how one has the ability to set up theming + override & extend defaults.
 
 ### Next
 
