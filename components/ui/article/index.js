@@ -69,8 +69,14 @@ const Article = ({ article }) => {
   return (
     <div className="flex bg-black text-white rounded-lg shadow-lg p-2 justify-between items-center gap-0 lg:gap-2">
       <div className="flex flex-col lg:flex-row grow items-start lg:items-center justify-between">
-        <div className="text-lg font-bold text-ellipsis overflow-hidden">
-          {article.article}
+        <div>
+          <div className="text-lg font-bold text-ellipsis overflow-hidden">
+            {article.article}
+          </div>
+          <div className="flex gap-1">
+            <div>Rank:</div>
+            <div>{article.rank}</div>
+          </div>
         </div>
         <div className="flex items-center">
           <div className="flex flex-row lg:flex-col gap-1">
