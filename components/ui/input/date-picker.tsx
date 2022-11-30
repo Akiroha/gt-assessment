@@ -1,8 +1,21 @@
-import { useField } from 'formik';
+import { useField, FieldInputProps } from 'formik';
 import DateView from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const DatePicker = ({ label, setFieldValue, minDate, maxDate, ...props }) => {
+interface Props extends FieldInputProps<''> {
+  label?: string;
+  setFieldValue: Function;
+  minDate?: Date | null | undefined;
+  maxDate?: Date | null | undefined;
+}
+
+const DatePicker: React.FC<Props> = ({
+  label,
+  setFieldValue,
+  minDate,
+  maxDate,
+  ...props
+}) => {
   const [field, meta] = useField(props);
 
   /**

@@ -5,7 +5,7 @@ const useSnack = () => {
   const dispatch = useDispatch();
 
   class Snack {
-    addSnack(status, message) {
+    addSnack(status: string, message: string) {
       dispatch(
         snackActions.addSnack({
           timestamp: Date.now().toString(),
@@ -15,7 +15,7 @@ const useSnack = () => {
       );
     }
 
-    removeSnack(timestamp) {
+    removeSnack(timestamp: string) {
       dispatch(snackActions.removeSnack(timestamp));
     }
   }

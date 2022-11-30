@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useSnack } from '../../../hooks';
 
-const SnackBarItem = ({ timestamp, status, message }) => {
+type Props = {
+  timestamp: string;
+  status: string;
+  message: string;
+};
+
+const SnackBarItem: React.FC<Props> = ({ timestamp, status, message }) => {
   const snack = useSnack();
   const [clicked, setClicked] = useState(false);
   const bg =

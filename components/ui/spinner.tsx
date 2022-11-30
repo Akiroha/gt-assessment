@@ -1,4 +1,8 @@
-const Spinner = ({ size }) => {
+type Props = {
+  size: string;
+};
+
+const Spinner: React.FC<Props> = ({ size }) => {
   return (
     <svg
       aria-hidden="true"

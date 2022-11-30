@@ -1,7 +1,17 @@
 import { useSelector } from 'react-redux';
 import { usePinned, useSnack } from '../../../hooks';
+import { StateType } from '../../../store';
+import { ArticleType } from '../../../types';
 
-const NotPinned = ({ action }) => {
+type ChildProps = {
+  action: Function;
+};
+
+type MainProps = {
+  article: ArticleType;
+};
+
+const NotPinned: React.FC<ChildProps> = ({ action }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +31,7 @@ const NotPinned = ({ action }) => {
   );
 };
 
-const Pinned = ({ action }) => {
+const Pinned: React.FC<ChildProps> = ({ action }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -39,9 +49,9 @@ const Pinned = ({ action }) => {
   );
 };
 
-const Article = ({ article }) => {
+const Article: React.FC<MainProps> = ({ article }) => {
   const pinned = usePinned();
-  const pinnedArticles = useSelector((state) => state.pinned);
+  const pinnedArticles = useSelector((state: StateType) => state.pinned);
   const isPinned =
     pinnedArticles.findIndex((a) => a.article === article.article) !== -1;
   const snack = useSnack();
@@ -50,7 +60,7 @@ const Article = ({ article }) => {
    * logic to toggle an article between pinned and unpinned
    * @param {string} actionType action being taken, pinning or unpinning
    */
-  const handleTogglePin = (actionType) => {
+  const handleTogglePin = (actionType: string) => {
     // switch on action type
     switch (actionType) {
       // when action is pin, add article to store + display snack message

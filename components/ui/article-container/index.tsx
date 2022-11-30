@@ -1,6 +1,17 @@
+import { ArticleType } from '../../../types';
 import Article from '../article';
 
-const ArticlesContainer = ({ articles, emptyMessage, quantity }) => {
+type Props = {
+  articles: ArticleType[];
+  emptyMessage: string;
+  quantity: number;
+};
+
+const ArticlesContainer: React.FC<Props> = ({
+  articles,
+  emptyMessage,
+  quantity,
+}) => {
   const empty = articles && articles.length === 0;
   const display = empty ? 'grid content-center' : 'flex flex-col gap-5';
 
@@ -8,7 +19,7 @@ const ArticlesContainer = ({ articles, emptyMessage, quantity }) => {
    * if articles passed are not empty then check if quantity is not null.
    * if quantity exists then we want to use that to splice the articles passed. otherwise we just set reduced articles to the ones passed
    */
-  const reducedArticles = !empty
+  const reducedArticles: ArticleType[] | null = !empty
     ? quantity
       ? articles.slice(0, quantity)
       : articles
@@ -22,6 +33,7 @@ const ArticlesContainer = ({ articles, emptyMessage, quantity }) => {
         <div className="font-bold text-3xl text-center">{emptyMessage}</div>
       )}
       {!empty &&
+        reducedArticles &&
         reducedArticles.map((article) => {
           return <Article key={article.article} article={article} />;
         })}

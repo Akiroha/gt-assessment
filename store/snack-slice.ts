@@ -1,13 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { SnackType } from '../types';
+
+const initialState: SnackType[] = [];
 
 const snackSlice = createSlice({
   name: 'slice',
-  initialState: [],
+  initialState: initialState,
   reducers: {
-    addSnack(state, action) {
+    addSnack(state, action: PayloadAction<SnackType>) {
       state.push(action.payload);
     },
-    removeSnack(state, action) {
+    removeSnack(state, action: PayloadAction<string>) {
       let index = state.findIndex(
         (snack) => snack.timestamp === action.payload
       );

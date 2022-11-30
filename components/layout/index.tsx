@@ -3,7 +3,11 @@ import Navbar from './nav-bar';
 import { useLocal, usePinned, useSnack, useNetwork } from '../../hooks';
 import SnackBar from './snack-bar';
 
-const Layout = ({ children }) => {
+type Props = {
+  children?: React.ReactNode;
+};
+
+const Layout: React.FC<Props> = ({ children }) => {
   const local = useLocal();
   const pinned = usePinned();
   const snack = useSnack();

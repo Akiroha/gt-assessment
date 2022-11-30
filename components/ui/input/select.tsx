@@ -1,6 +1,12 @@
-import { useField } from 'formik';
+import { useField, FieldInputProps } from 'formik';
+import { QuantityOptionsType } from '../../../types';
 
-const Select = ({ label, options, ...props }) => {
+interface Props extends FieldInputProps<''> {
+  label?: string;
+  options: QuantityOptionsType[];
+}
+
+const Select: React.FC<Props> = ({ label, options, ...props }) => {
   const [field, meta] = useField(props);
   /**
    * sets class based on if field is touched/has error

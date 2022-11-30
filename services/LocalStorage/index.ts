@@ -7,7 +7,7 @@ export default class LocalStorage {
    * @param {String} name name of local storage item
    * @param {Any} value can be an object/array/string of data to be set for a certain local storage item
    */
-  setItem(name, value) {
+  setItem(name: string, value: string | string[] | object) {
     //   if type of value that's passed is a string then we will just set the item to that
     if (typeof value === 'string') {
       localStorage.setItem(name, value);
@@ -22,7 +22,7 @@ export default class LocalStorage {
    * @param {String} name name of local storage item
    * @returns string or parse object
    */
-  getItem(name) {
+  getItem(name: string) {
     //   if an item with this name is in local storage then continue
     if (name in localStorage) {
       // get value from local storage
@@ -45,7 +45,7 @@ export default class LocalStorage {
    * remove item from local storage
    * @param {String} name name of item to remove
    */
-  removeItem(name) {
+  removeItem(name: string) {
     localStorage.removeItem(name);
   }
 
@@ -54,7 +54,7 @@ export default class LocalStorage {
    * @param {String} value value that needs to be checked if json string or not
    * @returns whether or not string passed is json or not
    */
-  isValidJson(value) {
+  isValidJson(value: string) {
     //   if value passes json regex test then we return true
     if (
       /^[\],:{}\s]*$/.test(

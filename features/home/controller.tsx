@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { BlackButton } from '../../components/ui/button';
 import { DatePicker, Select } from '../../components/ui/input';
+import { StateType } from '../../store';
 
 const initValues = {
   date: moment().add(-1, 'd').toDate(),
@@ -38,16 +39,21 @@ const quantityOptions = [
   },
 ];
 
-const Controller = ({ submit, loading }) => {
+type Props = {
+  submit: Function;
+  loading: boolean;
+};
+
+const Controller: React.FC<Props> = ({ submit, loading }) => {
   /**
    * sends values up to parent
    * @param {object} values values from form
    */
-  const handleSubmit = (values) => {
+  const handleSubmit = (values: object) => {
     submit(values);
   };
   // get network from state
-  const network = useSelector((state) => state.network);
+  const network = useSelector((state: StateType) => state.network);
 
   return (
     <Formik

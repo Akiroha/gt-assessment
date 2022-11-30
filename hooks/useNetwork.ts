@@ -5,7 +5,7 @@ const useNetwork = () => {
   const dispatch = useDispatch();
 
   class Network {
-    setNetworkStatus(status) {
+    setNetworkStatus(status: boolean) {
       dispatch(networkActions.setNetworkStatus(status));
     }
   }
