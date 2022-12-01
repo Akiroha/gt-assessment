@@ -4,7 +4,7 @@ import Article from '../article';
 type Props = {
   articles: ArticleType[];
   emptyMessage: string;
-  quantity: number;
+  quantity?: number;
 };
 
 const ArticlesContainer: React.FC<Props> = ({

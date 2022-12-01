@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux';
 import ArticlesContainer from '../../components/ui/article-container';
+import { StateType } from '../../store';
 
 const Pinned = () => {
   // get pinned articles from store
-  const pinnedArticles = useSelector((state) => state.pinned);
+  const pinnedArticles = useSelector((state: StateType) => state.pinned);
 
   return (
     <div className="flex-col items-center">

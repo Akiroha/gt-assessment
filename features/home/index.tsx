@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 import ArticlesContainer from '../../components/ui/article-container';
 import Spinner from '../../components/ui/spinner';
 import { useCache } from '../../hooks';
+import { StateType } from '../../store';
+import { ArticleType } from '../../types';
 import Controller from './controller';
 
 // constant end point
@@ -16,7 +18,7 @@ const endPoint =
  * @param {Date} date date object set
  * @returns returns date formatted
  */
-const formatDate = (date) => {
+const formatDate = (date: moment.Moment) => {
   return date.format('YYYY/MM/DD');
 };
 
@@ -28,15 +30,15 @@ const Home = () => {
   );
   // default quantity to 100
   const [quantity, setQuantity] = useState('100');
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState<ArticleType[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   // get network from store
-  const network = useSelector((state) => state.network);
+  const network = useSelector((state: StateType) => state.network);
   // get cached articles from store
-  const cachedArticles = useSelector((state) => state.cache);
+  const cachedArticles = useSelector((state: StateType) => state.cache);
 
-  useEffect(() => {
+  useEffect((): (() => void) => {
     // default subscribed to true, this will help us when cleaning up component
     let isSubscribed = true;
     // get date from query by replacing endpoint with empty string
@@ -55,7 +57,7 @@ const Home = () => {
         // set local articles + add articles to cache using this date
         setArticles(items);
         cache.addCache(dateFromQuery, items);
-      } catch (error) {
+      } catch (error: any) {
         // set error message, if error is from api then it will contain response.data.detail, otherwise we will display a generic message
         const errorMessage =
           error?.response?.data?.detail ??
@@ -101,7 +103,7 @@ const Home = () => {
    * logic to accept submit from child component and set local state
    * @param {object} values form values
    */
-  const handleSubmit = (values) => {
+  const handleSubmit = (values: { quantity: string; date: moment.Moment }) => {
     const { quantity, date } = values;
 
     setQuantity(quantity);
@@ -114,7 +116,7 @@ const Home = () => {
 
       {loading && (
         <div className="h-75vh grid content-center justify-center">
-          <Spinner size="w-20 h-20" width="20" height="20" />
+          <Spinner size="w-20 h-20" />
         </div>
       )}
 
@@ -130,7 +132,7 @@ const Home = () => {
         <ArticlesContainer
           articles={articles}
           emptyMessage="There are no articles that match the criteria."
-          quantity={quantity}
+          quantity={Number(quantity)}
         />
       )}
     </div>
